@@ -1,0 +1,14 @@
+select * from DEPARTMENT ;
+select * from PATIENT ;
+select * from EMPLOYEE ;
+select * from DOCTOR ;
+select * from NURSE ;
+select * from RECEPTIONIST ;
+select * from TREATMENT ;
+select * from PATIENTRECORD ;
+select * from INVENTORYRECORD ;
+select * from TREATMENTMEDICINE ;
+select * from ROOMS ;
+select * from SCHEDULE ;
+select * from COLLEGE ;
+select * from BUILDING ;

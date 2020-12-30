@@ -1,0 +1,12 @@
+drop table schedule;
+drop table Rooms;
+drop table TreatmentMedicine;
+drop table InventoryRecord;
+drop table PatientRecord;
+drop table Treatment;
+drop table Receptionist;
+drop table Nurse;
+drop table Doctor;
+drop table Employee;
+drop table Department;
+drop table Patient;

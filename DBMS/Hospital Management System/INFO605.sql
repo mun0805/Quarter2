@@ -1,0 +1,83 @@
+Create table Patient
+(
+	patientId CHAR(9) CONSTRAINT patient_pk PRIMARY KEY,
+	firstName VARCHAR2(50) NOT NULL,
+	lastName VARCHAR2(50) NOT NULL,
+	mailingAddress VARCHAR2(80) NOT NULL,
+	birthDate DATE NOT NULL,
+	phoneNumber NUMBER(10) NOT NULL,
+	gender CHAR(1) NOT NULL,
+	roomId CHAR(9) NOT NULL
+);
+Create table Department
+(
+	deptId CHAR(9) CONSTRAINT department_pk PRIMARY KEY,
+	name VARCHAR2(50) NOT NULL
+);
+
+Create table Employee
+(
+	employeeId CHAR(9) CONSTRAINT employee_pk PRIMARY KEY,
+	firstName VARCHAR2(50) NOT NULL,
+	lastName VARCHAR2(50) NOT NULL,
+	address VARCHAR2(80) NOT NULL,
+	birthDate DATE NOT NULL,
+	phoneNumber NUMBER(10) NOT NULL,
+	gender CHAR(1) NOT NULL,
+	salary NUMBER NOT NULL, 
+	deptId CHAR(9) NOT NULL,
+	CONSTRAINT employee_fk_dept FOREIGN KEY(deptId) REFERENCES Department(deptId)
+);
+
+Create table Doctor
+(
+	employeeId CHAR(9) NOT NULL,
+	specialization VARCHAR2(80) NOT NULL,
+	degree VARCHAR2(40) NOT NULL,
+	CONSTRAINT doctor_fk_employee FOREIGN KEY(employeeId) REFERENCES Employee(employeeId)
+);
+
+Create table Nurse
+(
+	employeeId CHAR(9) NOT NULL,
+	specialization VARCHAR2(80) NOT NULL,
+	CONSTRAINT nurse_fk_employee FOREIGN KEY(employeeId) REFERENCES Employee(employeeId)
+);
+
+
+Create table InventoryRecord
+(
+	medicineName CHAR(15) CONSTRAINT inventoryrecord_pk PRIMARY KEY,
+	price FLOAT(5) NOT NULL,
+	quantity INT NOT NULL,
+	code VARCHAR2(80) NOT NULL
+);
+
+Create table TreatmentMedicine
+(
+	treatmentId CHAR(9) NOT NULL,
+	medicineName CHAR(15) NOT NULL,
+	quantity INT NOT NULL,
+	CONSTRAINT treatmentmedicine_fk_treatment FOREIGN KEY(treatmentId) REFERENCES Treatment(treatmentId),
+	CONSTRAINT treatmentmedicine_fk_inventory FOREIGN KEY(medicineName) REFERENCES InventoryRecord(medicineName)
+);
+
+Create table Rooms
+(
+	roomId CHAR(9) CONSTRAINT rooms_pk PRIMARY KEY,
+	roomName VARCHAR2(20) NOT NULL,
+	type VARCHAR2(20) NOT NULL,
+	floorLocation INT NOT NULL
+);
+
+Create table Schedule
+(
+	scheduleId CHAR(9) CONSTRAINT schedule_pk PRIMARY KEY,
+	timespan INT NOT NULL,
+	scheduleDate DATE NOT NULL,
+	scheduleDescription VARCHAR2(80) NOT NULL,
+	employeeId CHAR(9) NOT NULL,
+	CONSTRAINT schedule_fk_employee FOREIGN KEY(employeeId) REFERENCES Employee(employeeId)
+);
+
+
